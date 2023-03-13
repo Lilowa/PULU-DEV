@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="adminOrder">
+	
+	<!-- 관리자 주문처리 리스트 --><!-- <상품이름 : 첫상품 + 외 (수량)개 >로 나오게끔 -->
+	<select id="orderList" resultType="hashMap"
+		parameterType="hashMap">
+			<![CDATA[
+				SELECT O.ORDER_NUM, O.ORDER_PAY_TYPE, 
+				       O.ORDER_MEMBER_ID, O.ORDER_SUM_MONEY, O.ORDER_DATE, O.ORDER_STATUS, M.GRADE
+				FROM ORDER_DELI O, MEMBER M, ORDER_GOODS G
+				WHERE O.ORDER_MEMBER_ID = M.ID
+				AND O.ORDER_NUM = G.ORDER_NUM
+				ORDER BY O.ORDER_DATE DESC
+			]]>
+	</select><!--  O, MEMBER M, GOODS G,  -->
+	
+	
+	<!-- 관리자 주문처리 상세보기 -->
+	<select id="orderDetail" resultType="hashMap" parameterType="hashMap">
+		<![CDATA[
+			SELECT * 
+			FROM ORDER_DELI O, MEMBER M
+			WHERE O.ORDER_MEMBER_ID = M.ID
+			AND ORDER_NUM = #{ORDER_NUM}
+			ORDER BY ORDER_NUM DESC    
+		
+		]]>
+	</select>
+
+	<select id="orderDetail2" resultType="hashMap" parameterType="hashMap">
+		<![CDATA[
+            SELECT ORDER_NUM, ORDER_GOODS_NUM, ORDER_GOODS_NAME, ORDER_GOODS_PRICE, ORDER_GOODS_AMOUNT, ORDER_GOODS_IMAGE, 
+            		(SELECT COUNT(*) FROM ORDER_GOODS WHERE ORDER_NUM = #{ORDER_NUM}) AS COUNT
+			FROM ORDER_GOODS OG, GOODS G
+			WHERE OG.ORDER_GOODS_NUM = G.GOODS_NUM
+			AND ORDER_NUM = #{ORDER_NUM}  			
+		]]>
+	</select>
+	
+	<!-- 주문 상품 수량 -->
+	<select id="adminOrderGoodsCount" resultType="hashMap" parameterType="hashMap">
+		<![CDATA[
+            SELECT COUNT(*) AS COUNT FROM ORDER_GOODS WHERE ORDER_NUM = #{ORDER_NUM}  			
+		]]>
+	</select>
+	
+
+	<!-- 관리자 주문처리 수정 -->
+	<update id="orderUpdate" parameterType="hashMap">
+		<![CDATA[
+			UPDATE ORDER_DELI
+			SET	ORDER_RECEIVE_NAME = #{ORDER_RECEIVE_NAME},
+				ORDER_STATUS = #{ORDER_STATUS},
+				ORDER_RECEIVE_ADDR1 = #{ORDER_RECEIVE_ADDR1},
+				ORDER_RECEIVE_ADDR2 = #{ORDER_RECEIVE_ADDR2},
+				ORDER_RECEIVE_PHONE = #{ORDER_RECEIVE_PHONE},
+				ORDER_RECEIVE_ZIPCODE = #{ORDER_RECEIVE_ZIPCODE},
+				ORDER_MEMO = #{ORDER_MEMO}
+			WHERE ORDER_NUM = #{ORDER_NUM}
+			
+		]]>
+	</update> <!-- AND QNA_ID = 'Admin' -->
+	
+	
+	<!-- 관리자 주문처리 <주문상태> 수정 -->
+	<update id="orderStatusUpdate" parameterType="hashMap">
+		<![CDATA[
+			UPDATE ORDER_DELI
+			SET ORDER_STATUS = #{ORDER_STATUS}
+			WHERE ORDER_NUM = #{ORDER_NUM}
+		]]>
+	</update>
+	
+	<!-- 관리자 주문처리 삭제 = 주문취소 -->
+	<update id="orderDelete" parameterType="hashmap">
+		<![CDATA[
+			UPDATE ORDER_DELI
+			SET ORDER_STATUS = 5
+			WHERE ORDER_NUM = #{ORDER_NUM}
+		]]>
+	</update>
+	
+	<!-- 관리자 주문처리 삭제 = 수량 복구 -->
+	<select id="goodsAmountSelect" resultType="hashMap" parameterType="hashmap" >
+		<![CDATA[
+			SELECT ORDER_GOODS_NUM, ORDER_GOODS_AMOUNT
+			FROM  ORDER_GOODS
+			WHERE ORDER_NUM = #{ORDER_NUM}
+		]]>
+	</select>
+	
+	<update id="goodsAmountUpdate" parameterType="hashmap">
+		<![CDATA[
+			UPDATE GOODS
+			SET GOODS_AMOUNT = GOODS_AMOUNT + #{ORDER_GOODS_AMOUNT}
+			WHERE GOODS_NUM = #{ORDER_GOODS_NUM}
+		]]>
+	</update>
+
+	<!-- 관리자 주문 검색 0(주문상태) - 상단 카테고리 -->
+	<select id="orderSearch0" resultType="hashMap" parameterType="hashMap">
+		<![CDATA[
+			SELECT *
+			FROM ORDER_DELI  
+			WHERE ORDER_STATUS = #{isSearch}  
+			ORDER BY ORDER_DATE DESC
+		]]>
+	</select>
+
+	<!-- 관리자 주문처리 검색 1 - 아이디 -->
+	<select id="orderSearch1" resultType="hashMap" parameterType="hashMap">
+		<![CDATA[
+			SELECT *
+			FROM ORDER_DELI  
+			WHERE ORDER_MEMBER_ID LIKE '%' || #{isSearch} || '%'  
+			ORDER BY ORDER_DATE DESC 
+		]]>
+	</select>
+	
+	<!-- 관리자 주문처리 검색 2 - 주문 번호 -->
+	<select id="orderSearch2" resultType="hashMap" parameterType="hashMap">
+		<![CDATA[
+			SELECT *
+			FROM ORDER_DELI
+			WHERE ORDER_NUM LIKE '%' || #{isSearch} || '%' 
+			ORDER BY ORDER_DATE DESC
+		]]>
+	</select>
+	
+	<select id="selectOrderNum" parameterType="hashmap" resultType="int">
+		<![CDATA[
+			SELECT ORDER_NUM 
+			FROM ORDER_DELI 
+			ORDER BY ORDER_DATE DESC  
+		]]>
+	</select>
+	
+	<!-- 선민: 특정 주문번호의 주문정보 뽑아오기 -->
+	<select id="selectOrderDeliByOrderNum" parameterType="int" resultType="hashmap">
+		<![CDATA[
+			SELECT * 
+			FROM ORDER_DELI 
+			WHERE ORDER_NUM = #{ORDER_NUM}
+			ORDER BY ORDER_NUM DESC  
+		]]>
+	</select>
+	<!-- 선민: 특정 주문번호의 주문상품항목 뽑아오기 -->
+	<select id="selectOrderGoodsByOrderNum" parameterType="int" resultType="hashmap">
+		<![CDATA[
+			SELECT * 
+			FROM ORDER_GOODS 
+			WHERE ORDER_NUM = #{ORDER_NUM}
+		]]>
+	</select>
+	
+</mapper>
