@@ -5,7 +5,7 @@
 ## 📖 주제: 소비자의 기호와 편리를 위한 샐러드 쇼핑몰
 <div align="center">
 
-<img alt="푸루뎁 소개 이미지" src="https://user-images.githubusercontent.com/73747247/222654373-82a67ad3-b21f-4e04-8367-466ed59e2a40.jpg" width="100%"/>
+<img alt="푸루뎁 소개 이미지" src="https://user-images.githubusercontent.com/94700980/224642350-d03c182f-6796-4b32-8213-1809f4043fa3.jpg" width="100%"/>
 
 </div>
 
