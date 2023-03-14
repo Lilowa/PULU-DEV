@@ -37,13 +37,13 @@
 <th width="33.33%">관리자</th>
 </tr>
 <tr>
-<td><img alt="유스케이스 비회원 이미지" src="https://user-images.githubusercontent.com/73747247/222654855-efa62a57-d38a-4dd3-a783-6ccb0857c01c.png"/></td>
-<td><img alt="유스케이스 회원 이미지" src="https://user-images.githubusercontent.com/73747247/222654858-8ab8f8e9-5ec8-41b4-a114-ea80fb2b3a57.png"/></td>
-<td><img alt="유스케이스 관리자 이미지" src="https://user-images.githubusercontent.com/73747247/222654860-d3d17f26-162d-4ab2-bded-fd564b0e50bb.png"/></td>
+<td><img alt="유스케이스 비회원 이미지" src="https://user-images.githubusercontent.com/94700980/224894969-10a21f84-601b-46f8-954e-c397586d6a62.png"/></td>
+<td><img alt="유스케이스 회원 이미지" src="https://user-images.githubusercontent.com/94700980/224894970-30dc0703-8a91-4979-88ec-c66bc94256e7.png"/></td>
+<td><img alt="유스케이스 관리자 이미지" src="https://user-images.githubusercontent.com/94700980/224894965-e428bd47-6ac1-4629-b91a-ef79708c3ee3.png"/></td>
 </tr>
 </table>
 
 ### ER 다이어그램
 <img alt="ER 다이어그램 이미지1" src="https://user-images.githubusercontent.com/73747247/222654681-af276c60-af26-40a0-a6d0-b1e1a93b0ec6.png" width="100%"/>
-<img alt="ER 다이어그램 이미지2" src="https://user-images.githubusercontent.com/73747247/222654687-d937ecb6-68fe-49d1-9ada-43bdc9f849a8.png" width="100%"/>
+
 
