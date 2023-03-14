@@ -44,6 +44,6 @@
 </table>
 
 ### ER 다이어그램
-<img alt="ER 다이어그램 이미지1" src="https://user-images.githubusercontent.com/73747247/222654681-af276c60-af26-40a0-a6d0-b1e1a93b0ec6.png" width="100%"/>
+<img alt="ER 다이어그램 이미지1" src="https://user-images.githubusercontent.com/94700980/224913829-1db49c69-2c95-4198-af71-caeecafd3bcc.png" width="100%"/>
 
 
