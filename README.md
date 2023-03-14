@@ -22,7 +22,7 @@
 <img alt="Java 11" src ="https://img.shields.io/badge/☕ Java 11-007396?&style=for-the-badge"/> <img alt="Jsp" src ="https://img.shields.io/badge/☕ Jsp-de6c18?&style=for-the-badge"/> <img alt="Html5" src ="https://img.shields.io/badge/HTML5-E34F26?&style=for-the-badge&logo=HTML5&logoColor=white"/> <img alt="Css3" src ="https://img.shields.io/badge/CSS3-1572B6?&style=for-the-badge&logo=CSS3&logoColor=white"/> <img alt="Javascript" src ="https://img.shields.io/badge/JavaScript ES6-F7DF1E?&style=for-the-badge&logo=JavaScript&logoColor=black"/> <img alt="jQuery" src ="https://img.shields.io/badge/jQuery 3-0769AD?&style=for-the-badge&logo=jQuery&logoColor=white"/><img alt="Oracle" src ="https://img.shields.io/badge/Oracle-F80000?&style=for-the-badge&logo=Oracle&logoColor=white"/>
 <img alt="Apache Tomcat" src ="https://img.shields.io/badge/Apache Tomcat 11-F8DC75?&style=for-the-badge&logo=Apache Tomcat&logoColor=black"/>
 <br/>
-<img alt="Spring" src ="https://img.shields.io/badge/Spring 5-6DB33F?&style=for-the-badge&logo=Spring&logoColor=white"/> <img alt="Mybatis" src ="https://img.shields.io/badge/Mybatis-000000?&style=for-the-badge&logo=Twitter&logoColor=white"/><img alt="Apache Maven" src ="https://img.shields.io/badge/Apache Maven-C71A36?&style=for-the-badge&logo=Apache Maven&logoColor=white"/>
+<img alt="Spring" src ="https://img.shields.io/badge/Spring 5-6DB33F?&style=for-the-badge&logo=Spring&logoColor=white"/> <img alt="Mybatis" src ="https://img.shields.io/badge/Mybatis-000000?&style=for-the-badge&logo=Twitter&logoColor=white"/> <img alt="Apache Maven" src ="https://img.shields.io/badge/Apache Maven-C71A36?&style=for-the-badge&logo=Apache Maven&logoColor=white"/>
 </div>
 <br/>
 
