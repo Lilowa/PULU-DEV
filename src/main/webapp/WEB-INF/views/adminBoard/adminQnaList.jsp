@@ -449,5 +449,12 @@ pre {
 				opener.location.href = location.href;
 			}
 		}
+		
+		/****** 줄바꿈 ***********/
+		$(document).ready(function(){
+	 		let str = document.getElementById("QNA_COMMENT_text").value;
+			str = str.toString().replaceAll("<br/>", "\r\n");
+			str = str.toString().replaceAll("</br>", "\r\n");
+			document.getElementById("QNA_COMMENT_text").value = str;
+		})
 	</script>
-

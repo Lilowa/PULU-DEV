@@ -96,7 +96,7 @@ public class QnaController {
 		
 		// 줄바꿈 시 <br/> 넣기
 		String QNA_CONTENTS = (String)commandMap.get("QNA_CONTENTS");
-		QNA_CONTENTS = QNA_CONTENTS.replace("\r\n", "<br/>");
+		QNA_CONTENTS = QNA_CONTENTS.replaceAll("\r\n", "</br>");
 		commandMap.getMap().put("QNA_CONTENTS", QNA_CONTENTS);
 		
 		qnaService.qnaUpdate(commandMap.getMap(), request);
