@@ -128,6 +128,14 @@ td {
     background-color: #006F3E;
 }
 
+#qnaDelete {
+	display: flex;
+    justify-content: flex-end;
+}
+
+.deletebtn {
+	margin-right: 10px;
+}
 </style>
 
 		<!--------------- 글쓰기 버튼 --------------->
@@ -224,13 +232,14 @@ td {
 																						<p style="word-break: break-all;">${row.QNA_CONTENTS}</p>
 																						<form action="qnaDelete.pulu" role="form" id="qnaDelete" method="post">
 																							<input type="hidden" name="ID" value="${loginId}">
-																							<input type="hidden" name="QNA_GOODS_NUM" value="${row.GOODS_NUM}"> 
-																							<input type="hidden" name="GOODS_NUM" value="${row.GOODS_NUM}"> 
+																							<input type="hidden" name="QNA_GOODS_NUM" value="${row.QNA_GOODS_NUM}"> 
+																							<input type="hidden" name="GOODS_NUM" value="${row.QNA_GOODS_NUM}"> 
 																							<input type="hidden" name="QNA_ID" value="${row.QNA_ID}">
 	
 																							<c:if test="${loginId == row.QNA_ID}">
-																								<input type="button" class="btn btn-default qnaptn" value="삭제" onclick="qnaDelete('${row.QNA_NUM}')" style="width: 65px">
-																								<a href="#this" type="button" class="btn btn-default qnaptn" onclick="openQnaUpdate('${row.QNA_NUM}')" style="width: 65px">수정 
+																								<input type="button" class="btn btn-default qnabtn deletebtn" value="삭제" onclick="qnaDelete('${row.QNA_NUM}')" style="width: 65px">
+																								<input type="hidden" name="QNA_GOODS_NUM" value="${row.QNA_GOODS_NUM}"> 
+																								<a href="#this" type="button" class="btn btn-default qnabtn" onclick="openQnaUpdate('${row.QNA_NUM}')" style="width: 65px">수정 
 																									<input type="hidden" name="QNA_CONTENTS" value="${row.QNA_CONTENTS}" />
 																									<input type="hidden" name="QNA_COMMENT" value="${row.QNA_COMMENT}" />
 																								</a>
@@ -257,9 +266,10 @@ td {
 																							<input type="hidden" name="QNA_ID" value="${row.QNA_ID}">
 	
 																							<c:if test="${loginId == row.QNA_ID}">
-																								<input type="button" class="btn btn-default qnaptn" value="삭제" onclick="qnaDelete('${row.QNA_NUM}')">
+																								<input type="button" class="btn btn-default qnabtn deletebtn" value="삭제" onclick="qnaDelete('${row.QNA_NUM}')">
+																								<input type="hidden" name="QNA_GOODS_NUM" value="${row.GOODS_NUM}"> 
 	
-																								<a href="#this" type="button" class="btn btn-default qnaptn" onclick="openQnaUpdate('${row.QNA_NUM}','${row.QNA_COMMENT}')">수정
+																								<a href="#this" type="button" class="btn btn-default qnabtn" onclick="openQnaUpdate('${row.QNA_NUM}','${row.QNA_COMMENT}')">수정
 																									<input type="hidden" name="QNA_CONTENTS" value="${row.QNA_CONTENTS}" /> 
 																									<input type="hidden" name="QNA_COMMENT" value="${row.QNA_COMMENT}" />
 																								</a>
@@ -302,119 +312,101 @@ td {
 				</div>
 			</div>
 		</div>
-
-
-
-	<!--------------- 검색 --------------->
-	<%--          <div style="text-align: center;">
-               <div id="dataTables-example_filter" class="dataTables_filter">
-                  <form action="">
-                     <input type="hidden" name="QNA_GOODS_NUM"value="${map.GOODS_NUM}"> 
-                     <input type="hidden" name="GOODS_NUM" value="${map.GOODS_NUM}">
-                     <select class="form-control" name="searchNum" id="searchNum">
-                        <option value="0">제목</option>
-                        <option value="1">작성자</option>
-                     </select> <input class="form-control" type="text" name="isSearch"id="isSearch" /> <span>
-                        <button type="submit" class="btn btn-primary">검색</button>
-                     </span>
-                  </form>
-               </div>
-            </div> --%>
-
-
 	<br />
 	<%@ include file="/WEB-INF/include/include-body.jspf"%>
 
 	<script type="text/javascript">
-      /************ QNA 수정 팝업창 띄우기 ************/
-      function openQnaUpdate(QNA_NUM, QNA_COMMENT) {
-         var QNA_NUM = QNA_NUM;
-         var QNA_COMMENT = QNA_COMMENT;
-         var URL = "qnaUpdateForm.pulu?QNA_NUM=" + QNA_NUM;
-      		
-         if(QNA_COMMENT == null || QNA_COMMENT == undefined) {
-            window.open(URL,
-                     'window_qnaUpdate',
-                     'width=500, height=500, location=no, status=no');
-         } else if(QNA_COMMENT != null || QNA_COMMENT != undefined){
-            alert("답변 완료된  Q&A는 수정할 수 없습니다.");
-         }
-      }
-
-      /************ QNA 리스트 아코디언 ************/
-      $(function() {
-         var article = (".QNAList .show");
-         $(".QNAList .item  td").click(function() {
-            var myArticle = $(this).parents().next("tr");
-            var myArticle2 = $(this).parents().parents().next("tr");
-            if ($(myArticle).hasClass('hide')) {
-               $(article).removeClass('show').addClass('hide');
-               $(myArticle).removeClass('hide').addClass('show');
-               $(myArticle2).removeClass('hide').addClass('show');
-
-            } else {
-               $(myArticle).addClass('hide').removeClass('show');
-               $(myArticle2).addClass('hide').removeClass('show');
-            }
-         });
-      });
-
-      /************ QNA 글쓰기 창 열기 ************/
-	$(function() {
-		var con = document.getElementById("insertQnaD"); 
-		$('#qnabtn').click(function() {
-			if(${loginId != null}) {
-				if($('#insertQnaD').css('display','none')){
-					$('#insertQnaD').css('display','flex');
-				}
-			} else {
-				if (confirm("로그인 후 Q&A를 남길 수 있습니다.\n 로그인 하시겠습니까?") == true) {
-				location.href="/loginForm.pulu";
-				}
+      	/************ QNA 수정 팝업창 띄우기 ************/
+		function openQnaUpdate(QNA_NUM, QNA_COMMENT) {
+			var QNA_NUM = QNA_NUM;
+			var QNA_COMMENT = QNA_COMMENT;
+			var URL = "qnaUpdateForm.pulu?QNA_NUM=" + QNA_NUM;
+			
+			if(QNA_COMMENT == null || QNA_COMMENT == undefined) {
+				window.open(URL,
+			            'window_qnaUpdate',
+			            'width=500, height=500, location=no, status=no');
+			} else if(QNA_COMMENT != null || QNA_COMMENT != undefined){
+				alert("답변 완료된  Q&A는 수정할 수 없습니다.");
 			}
-		})
-	});
+		}
+
+      	/************ QNA 리스트 아코디언 ************/
+		$(function() {
+			var article = (".QNAList .show");
+			
+			$(".QNAList .item  td").click(function() {
+				var myArticle = $(this).parents().next("tr");
+				var myArticle2 = $(this).parents().parents().next("tr");
+				
+				if ($(myArticle).hasClass('hide')) {
+					$(article).removeClass('show').addClass('hide');
+					$(myArticle).removeClass('hide').addClass('show');
+					$(myArticle2).removeClass('hide').addClass('show');
+					
+				} else {
+					$(myArticle).addClass('hide').removeClass('show');
+					$(myArticle2).addClass('hide').removeClass('show');
+				}
+			});
+		});
+
+      	/************ QNA 글쓰기 창 열기 ************/
+		$(function() {
+			var con = document.getElementById("insertQnaD"); 
+			$('#qnabtn').click(function() {
+				if(${loginId != null}) {
+					if($('#insertQnaD').css('display','none')){
+						$('#insertQnaD').css('display','flex');
+					}
+				} else {
+					if (confirm("로그인 후 Q&A를 남길 수 있습니다.\n 로그인 하시겠습니까?") == true) {
+					location.href="/loginForm.pulu";
+					}
+				}
+			})
+		});
  
 
       /************ QNA 삭제 확인 알림 띄우기 ************/
-      function qnaDelete(QNA_NUM) {
-         var comSubmit = new ComSubmit("qnaDelete");
-         if (confirm("삭제 하겠습니까?") == true) {
-            comSubmit.setUrl("<c:url value='/qnaDelete.pulu' />");
-            comSubmit.addParam("QNA_NUM", QNA_NUM);
-            comSubmit.submit();
-            location.href = location.href;
-         }
-      }
+		function qnaDelete(QNA_NUM) {
+		   var comSubmit = new ComSubmit("qnaDelete");
+		   if (confirm("삭제 하겠습니까?") == true) {
+		      comSubmit.setUrl("<c:url value='/qnaDelete.pulu' />");
+		      comSubmit.addParam("QNA_NUM", QNA_NUM);
+		      comSubmit.submit();
+//		      location.href="/Detail.pulu?GOODS_NUM="+QNA_GOODS_NUM+"#here3";
+		   }
+		}
 
-      /************ QNA 등록 유효성 검사 + 등록 ************/
-      function qnaInsertBtn() {
-         var comSubmit = new ComSubmit("qnaInsertForm");
-
-         if (qnaInsertForm.QNA_SUBJECT.value.length == 0) {
-            qnaInsertForm.QNA_SUBJECT.focus();
-            alert("Q&A 제목을 입력하세요.");
-            return false;
-         }
-         if (qnaInsertForm.QNA_CONTENTS.value.length == 0) {
-            alert("Q&A 내용을 입력하세요.");
-            qnaInsertForm.QNA_CONTENTS.focus();
-            return false;
-         }
-         if (qnaInsertForm.QNA_SUBJECT.value.length >= 60) {
-            qnaInsertForm.QNA_SUBJECT.focus();
-            alert("Q&A 제목의 글자 수는 20자로 제한합니다.");
-            return false;
-         }
-         if (qnaInsertForm.QNA_CONTENTS.value.length >= 3000) {
-            qnaInsertForm.QNA_CONTENTS.focus();
-            alert("Q&A 내용의 글자 수는 1000자로 제한합니다.");
-            return false;
-         }
-         comSubmit.setUrl("<c:url value='/qnaInsert.pulu' />");
-         comSubmit.submit();
-         opener.location.href = location.href;
-
-      }
+      	/************ QNA 등록 유효성 검사 + 등록 ************/
+		function qnaInsertBtn() {
+			var comSubmit = new ComSubmit("qnaInsertForm");
+			
+			if (qnaInsertForm.QNA_SUBJECT.value.length == 0) {
+			   qnaInsertForm.QNA_SUBJECT.focus();
+			   alert("Q&A 제목을 입력하세요.");
+			   return false;
+			}
+			if (qnaInsertForm.QNA_CONTENTS.value.length == 0) {
+			   alert("Q&A 내용을 입력하세요.");
+			   qnaInsertForm.QNA_CONTENTS.focus();
+			   return false;
+			}
+			if (qnaInsertForm.QNA_SUBJECT.value.length >= 60) {
+			   qnaInsertForm.QNA_SUBJECT.focus();
+			   alert("Q&A 제목의 글자 수는 20자로 제한합니다.");
+			   return false;
+			}
+			if (qnaInsertForm.QNA_CONTENTS.value.length >= 3000) {
+			   qnaInsertForm.QNA_CONTENTS.focus();
+			   alert("Q&A 내용의 글자 수는 1000자로 제한합니다.");
+			   return false;
+			}
+			comSubmit.setUrl("<c:url value='/qnaInsert.pulu' />");
+			comSubmit.submit();
+			opener.location.href = location.href;
+		
+		}
 
       </script>

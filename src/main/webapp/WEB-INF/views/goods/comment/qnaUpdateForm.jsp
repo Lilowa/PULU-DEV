@@ -20,15 +20,13 @@
     <link href="/resources/sbadmin/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
 </head>
-<script type="text/javascript">
-		/****** 줄바꿈 ***********/
-	function br() {
- 		var str = document.getElementById("QNA_CONTENTS").value;
-		str = str.replaceAll("<br/>", "\r\n");
-		document.getElementById("QNA_CONTENTS").value = str;
-		}
-		
-</script>
+
+<style>
+	#QNA_CONTENTS {
+		height: 150px;
+	}
+</style>
+
 <script type="text/javascript">
 	function fn_qnaUpdate(){
 		var params = $("#qnaUpdateBtn").serialize();
@@ -48,6 +46,13 @@
 		}
 	}
 	
+	/****** 줄바꿈 ***********/
+	$(document).ready(function(){
+ 		let str = document.getElementById("QNA_CONTENTS").value;
+		str = str.toString().replace("<br/>", "\r\n");
+		str = str.toString().replace("</br>", "\r\n");
+		document.getElementById("QNA_CONTENTS").value = str;
+	})
 </script>
 
 <body onload="">
@@ -71,13 +76,11 @@
 						</div>
 						<div class="form-group">
 							<label>내용</label> 
-								<textarea class="form-control" name="QNA_CONTENTS" id="QNA_CONTENTS">${qnaMap.QNA_CONTENTS }</textarea> 
-								<!-- <input class="form-control" type="text" value="${qnaMap.QNA_CONTENTS }" name="QNA_CONTENTS">-->
+								<textarea class="form-control" name="QNA_CONTENTS" id="QNA_CONTENTS" style="">${qnaMap.QNA_CONTENTS }</textarea> 
 						</div>
 						
 						<button type="button" class="btn btn-primary" style="background-color: #006F3E;" onclick="window.close();">닫기</button>
 						<input type="button" class="btn btn-primary" style="background-color: #006F3E;" value="수정하기" onclick="fn_qnaUpdate()">
-						<!-- <input type="submit" class="btn btn-primary" value="수정하기-서브밋" onclick="opener.parent.location.reload(); window.close();"> -->
 					
 					</form></br></br></br>
 				   </div>
@@ -91,4 +94,3 @@
   
 </body>
 </html>
-
