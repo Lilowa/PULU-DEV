@@ -49,8 +49,8 @@
 	/****** 줄바꿈 ***********/
 	$(document).ready(function(){
  		let str = document.getElementById("QNA_CONTENTS").value;
-		str = str.toString().replace("<br/>", "\r\n");
-		str = str.toString().replace("</br>", "\r\n");
+		str = str.toString().replaceAll("<br/>", "\r\n");
+		str = str.toString().replaceAll("</br>", "\r\n");
 		document.getElementById("QNA_CONTENTS").value = str;
 	})
 </script>
