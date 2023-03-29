@@ -39,12 +39,6 @@ public class AdminQnaController {
 	@Resource(name = "AdminQnaService") // Service 영억 접근을 위한 선언(qnaServiceImpl의 이름과 통일)
 	private AdminQnaService adminQnaService; // 빈 수동 등록
 
-	// 메인페이지로 이동
-/*	@RequestMapping(value = "/main")
-	public String list() {
-		return "main";
-	}*/
-
 	// QNA 리스트
 	@RequestMapping(value = "/adminQnaList") // 요청 URL. 주소는 @RequestMapping과 맵핑되어 해당 메서드 실행
 	public ModelAndView adminQnaList(CommandMap commandMap, HttpServletRequest request) throws Exception {
@@ -207,14 +201,14 @@ public class AdminQnaController {
 		return mv;
 	}
 
-	// QNA 코멘트 작성 - (수정)
+	// QNA 코멘트 작성 + 수정
 	@RequestMapping(value = "/adminQnaComInsert", method = RequestMethod.POST)
 	public ModelAndView adminQnaComInsert(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("redirect:/adminQnaList.pulu");
 
 		// 줄바꿈 시 <br/> 넣기
 		String QNA_COMMENT = (String)commandMap.get("QNA_COMMENT");
-		QNA_COMMENT = QNA_COMMENT.replace("\r\n", "<br/>");
+		QNA_COMMENT = QNA_COMMENT.replace("\r\n", "</br>");
 		commandMap.getMap().put("QNA_COMMENT", QNA_COMMENT);		
 		
 		adminQnaService.adminQnaComInsert(commandMap.getMap(), request);
@@ -231,27 +225,22 @@ public class AdminQnaController {
 	}
 
 	// QNA 코멘트 수정
-	@RequestMapping(value = "/adminQnaComUpdate")
-	public ModelAndView adminQnaComUpdate(CommandMap commandMap, HttpServletRequest request) throws Exception {
-		ModelAndView mv = new ModelAndView("redirect:/adminQnaList.pulu");
-
-		// 줄바꿈 시 <br/> 넣기
-		String QNA_COMMENT = (String)commandMap.get("QNA_COMMENT");
-		QNA_COMMENT = QNA_COMMENT.replace("\r\n", "<br/>");
-		commandMap.getMap().put("QNA_COMMENT", QNA_COMMENT);		
-		
-		adminQnaService.adminQnaComUpdate(commandMap.getMap(), request);
-		Map<String, Object> map = adminQnaService.adminQnaDetail(commandMap.getMap());
-
-		mv.addObject("map", map);
-		mv.addObject("QNA_NUM", commandMap.get("QNA_NUM"));
-		mv.addObject("QNA_GOODS_NUM", commandMap.get("QNA_GOODS_NUM"));
-		mv.addObject("isSearch", isSearch);
-		mv.addObject("searchNum", searchNum);
-		mv.addObject("currentPage", currentPage);
-
-		return mv;
-	}
+//	@RequestMapping(value = "/adminQnaComUpdate")
+//	public ModelAndView adminQnaComUpdate(CommandMap commandMap, HttpServletRequest request) throws Exception {
+//		ModelAndView mv = new ModelAndView("redirect:/adminQnaList.pulu");		
+//		
+//		adminQnaService.adminQnaComUpdate(commandMap.getMap(), request);
+//		Map<String, Object> map = adminQnaService.adminQnaDetail(commandMap.getMap());
+//
+//		mv.addObject("map", map);
+//		mv.addObject("QNA_NUM", commandMap.get("QNA_NUM"));
+//		mv.addObject("QNA_GOODS_NUM", commandMap.get("QNA_GOODS_NUM"));
+//		mv.addObject("isSearch", isSearch);
+//		mv.addObject("searchNum", searchNum);
+//		mv.addObject("currentPage", currentPage);
+//
+//		return mv;
+//	}
 
 	// QNA 코멘트 삭제
 	@RequestMapping(value = "/adminQnaComDelete")
