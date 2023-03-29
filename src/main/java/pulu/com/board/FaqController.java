@@ -38,12 +38,6 @@ public class FaqController {
 	@Resource(name = "FaqService") // Service 영억 접근을 위한 선언(faqServiceImpl의 이름과 통일)
 	private FaqService faqService; // 빈 수동 등록
 
-	// 메인페이지로 이동
-	@RequestMapping(value = "/main")
-	public String list() {
-		return "Main";
-	}
-
 	// FAQ 리스트
 	@RequestMapping(value = "/faqList") // 요청 URL. 주소는 @RequestMapping과 맵핑되어 해당 메서드 실행
 	public ModelAndView faqList(CommandMap commandMap, HttpServletRequest request) throws Exception {

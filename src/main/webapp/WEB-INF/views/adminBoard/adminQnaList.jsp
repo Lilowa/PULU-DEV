@@ -262,7 +262,6 @@ pre {
 																				<tr>	
 																					<td style="text-align-last: right;">
 																						<input type="submit" class="btn" value="답변완료" onsubmit="location.href = location.href;" style="margin-right: 40px">
-																						<%-- <input type="button" class="btn btn-default" value="수정완료" onclick="adminQnaComInsert('${row.QNA_COMMENT}','${row.QNA_NUM}')"> --%>
 																					</td>
 																				</tr>
 																			</table>
@@ -279,10 +278,6 @@ pre {
 																	<td class="click_td2" width="*%" style="text-align: left;"><p style="word-break: break-all; margin-left: 10px; width: 96%;">${row.QNA_CONTENTS}</p>
 																		<input type="button" class="btn" value="문의삭제" onclick="adminQnaDelete(${row.QNA_NUM})" style="margin-left: 10px;"></td>
 																</tr>
-																<!-- <tr>
-																	내용/ 답변 분리 선
-																	<td colspan="2"><hr style="width: 100%; padding: 0"></td>
-																</tr> -->
 																<tr id="comment">
 																	<td width="10%"><img alt="a"
 																		src="resources/img/icon/aa.png" width="30" height="30"></td>
@@ -313,14 +308,18 @@ pre {
 																						
 																						<form role="form" id="adminQnaComInsert" method="post" action="adminQnaComInsert.pulu">
 																							<input type="hidden" name="QNA_NUM" id="QNA_NUM" value="${row.QNA_NUM}" />
-																							<table class="comInsert" style="width: 100%; height: 100%; padding: 0px; border: 0px;">
+																							<table class="comInsert" style="width: 100%; height: 100%; padding: 10px; border: 0px;">
 																								<tr height="5px">
 																									<td style="text-align: left; padding: 0px;" height="100%" width="100%">
-																										<textarea class="QNA_COMMENT" id="QNA_COMMENT_text" rows="5" style="width: 96%; height: 100%; border:0px; background:#f0f0f0; padding:10px; margin:10px; border-radius:10px;" placeholder="${row.QNA_COMMENT}" id="QNA_COMMENT" name="QNA_COMMENT">${row.QNA_COMMENT}</textarea>
+																										<textarea class="QNA_COMMENT_text" id="QNA_COMMENT_text" rows="5" style="width: 96%; height: 100%; border:0px; background:#f0f0f0; padding:10px; margin:10px; border-radius:10px;" placeholder="${row.QNA_COMMENT}" name="QNA_COMMENT">${row.QNA_COMMENT}</textarea>
+																									</td>
+																								</tr>
+																								<tr>	
+																									<td style="text-align-last: right;">
+																										<input type="submit" class="btn" value="수정완료" onsubmit="location.href = location.href;" style="margin-right: 40px">
 																									</td>
 																								</tr>
 																							</table>
-																							<input type="submit" class="btn" value="수정완료" onsubmit="location.href = location.href;" style="margin-right:40px">
 																						</form>
 																				</tr>
 																			</table>

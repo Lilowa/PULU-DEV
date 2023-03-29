@@ -181,19 +181,18 @@
 								 END
 				WHERE QNA_NUM = #{QNA_NUM} -->
 	<!-- QNA 코멘트 수정 -->
-<!-- 	<update id="qnaComUpdate" parameterType="hashMap">
+ 	<update id="qnaComUpdate" parameterType="hashMap">
 		<![CDATA[
 			UPDATE QNA 
 			SET QNA_COMMENT = #{QNA_COMMENT}
 				QNA_STATUS = '답변완료'
 			WHERE QNA_NUM = #{QNA_NUM}
 			
-			UPDATE QNA
-			SET QNA_STATUS = '답변대기'
-			WHERE QNA_COMMENT IS NULL
 
 		]]>
-	</update> -->
+	</update><!-- 			UPDATE QNA
+			SET QNA_STATUS = '답변대기'
+			WHERE QNA_COMMENT IS NULL -->
 	
 	<!-- QNA 코멘트 삭제 -->
 	<update id="qnaComDelete" parameterType="hashMap">

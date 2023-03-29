@@ -39,12 +39,6 @@ public class AdminFaqController {
 	@Resource(name = "AdminFaqService") // Service 영억 접근을 위한 선언(adminFaqServiceImpl의 이름과 통일)
 	private AdminFaqService adminFaqService; // 빈 수동 등록
 
-	// 관리자 메인페이지로 이동
-//	@RequestMapping(value = "/adminMain")
-//	public String list() {
-//		return "adminMain";
-//	}
-
 	// 관리자 FAQ 리스트
 	@RequestMapping(value = "/adminFaqList") // 요청 URL. 주소는 @RequestMapping과 맵핑되어 해당 메서드 실행
 	public ModelAndView adminFaqList(CommandMap commandMap, HttpServletRequest request) throws Exception {
