@@ -375,7 +375,6 @@ td {
 		      comSubmit.setUrl("<c:url value='/qnaDelete.pulu' />");
 		      comSubmit.addParam("QNA_NUM", QNA_NUM);
 		      comSubmit.submit();
-//		      location.href="/Detail.pulu?GOODS_NUM="+QNA_GOODS_NUM+"#here3";
 		   }
 		}
 

@@ -83,7 +83,7 @@
             <div class="row">
                 <div class="col-lg-12">
 					<div class="col-lg-12">
-						<h2 class="page-header">주문정보</h2>
+						<h2 class="page-header">주문정보 수정</h2>
 					</div>
 				<div class="panel-heading">
 						<h4 align="center">
@@ -129,8 +129,8 @@
 									</div>
 									<div class="form-group totalPrice">
 										<label>총금액</label> 
-										<input class="form-control" type="text" value="${map.ORDER_SUM_MONEY }" name="SUM_MONEY" readonly>
-									</div>
+											<input class="form-control" type="text" value="${map.ORDER_SUM_MONEY }" name="SUM_MONEY" readonly style="font-weight: 600; color: #006F3E; font-size: x-large; text-align: right;">
+										</div>
 								</div>
 							</div>
 						

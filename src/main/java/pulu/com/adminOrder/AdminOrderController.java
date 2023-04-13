@@ -136,7 +136,6 @@ public class AdminOrderController {
 	public ModelAndView adminOrderDetail(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView("/adminBoard/adminOrderDetail");
 
-//		int ORDER_NUM = (Integer)commandMap.get("ORDER_NUM");
 		List<Map<String, Object>> list = adminOrderService.adminOrderDetail2(commandMap.getMap());
 		Map<String, Object> count = adminOrderService.adminOrderGoodsCount(commandMap.getMap());
 		Map<String, Object> map = adminOrderService.adminOrderDetail(commandMap.getMap());
@@ -159,10 +158,6 @@ public class AdminOrderController {
 	public ModelAndView adminOrderUpdateForm(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("/adminBoard/adminOrderUpdate");
 
-		//Map<String, Object> map = adminOrderService.adminOrderDetail(commandMap.getMap());// 상세보기 정보를 맵에서 받아옴
-		// 상세보기에 들어있는 정보를 꺼내서 mv에 다시저장
-		
-//		List<Map<String,Object>> map = adminOrderService.adminOrderList(commandMap.getMap());
 		List<Map<String, Object>> list = adminOrderService.adminOrderDetail2(commandMap.getMap());
 		Map<String, Object> map = adminOrderService.adminOrderDetail(commandMap.getMap());
 
@@ -186,9 +181,6 @@ public class AdminOrderController {
 
 		mv.addObject("ORDER_NUM", commandMap.get("ORDER_NUM"));
 		mv.addObject("map", map);
-//		mv.addObject("isSearch", isSearch);
-//		mv.addObject("searchNum", searchNum);
-//		mv.addObject("currentPage", currentPage);
 
 		return mv;
 	}

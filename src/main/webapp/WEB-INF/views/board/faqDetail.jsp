@@ -41,7 +41,7 @@
 	                        </ul>
 	                        <div class="detail">
 	                        	<div class="boardview">
-	                        		${map.FAQ_CONTENT }
+	                        		<pre>${map.FAQ_CONTENT }</pre>
 	                        	</div>
 	                        </div>
 						</td>
@@ -68,14 +68,8 @@
 		var isSearch;
 		var searchNum;
 
-		//			if (isSearch === null) { 
 		comSubmit
 				.setUrl("<c:url value='/faqList.pulu?searchNum=${searchNum}&isSearch=${isSearch}&currentPage=${currentPage}'/>");
-		//			} else {
-		//				comSubmit.setUrl("<c:url value='/adminFaqList.pulu?currentPage=${currentPage}'/>");
-		//			}
 		comSubmit.submit();
-
-		//			history.go(-1);
 	}
 </script>

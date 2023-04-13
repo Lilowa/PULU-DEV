@@ -6,6 +6,25 @@
 <%@ include file="/WEB-INF/include/include-header.jspf" %>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+<!-- CK editor -->
+<script
+	src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
+
+<style>
+	.ck.ck-editor {
+		max-width: 100%;
+	}
+	.ck-editor__editable {
+	    min-height: 500px;
+	}
+	
+	#frm {
+	    display: flex;
+	    flex-direction: column;
+	}
+</style>
+
 </head>
 <body>
 
@@ -63,6 +82,14 @@
 	
 	<%@ include file="/WEB-INF/include/include-body.jspf" %>   
 	<script type="text/javascript">
+		/****** 줄바꿈 ***********/
+		$(document).ready(function(){
+	 		let str = document.getElementById("FAQ_CONTENT").value;
+			str = str.toString().replaceAll("<br/>", "\r\n");
+			str = str.toString().replaceAll("</br>", "\r\n");
+			document.getElementById("FAQ_CONTENT").value = str;
+		})
+	
 		$(document).ready(function(){
 			$("#list").on("click", function(e){ //목록으로 버튼
 				e.preventDefault();
@@ -113,6 +140,20 @@
 			comSubmit.submit();
 			
 		}
+		
+		let editor;
+		 
+		ClassicEditor
+		  .create(document.querySelector( '#FAQ_CONTENT' ), {
+			toolbar: [ 'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList' ],
+		    language: 'ko'
+		  })
+		  .then( newEditor => {
+		    editor = newEditor;
+		  } )
+		  .catch( error => {
+		    console.error( error );
+		  } );
 	</script>
 </body>
 </html>

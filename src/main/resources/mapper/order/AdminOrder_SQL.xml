@@ -83,7 +83,7 @@
 		]]>
 	</update>
 	
-	<!-- 관리자 주문처리 삭제 = 수량 복구 -->
+	<!-- 관리자 주문처리 - 삭제 = 수량 복구 -->
 	<select id="goodsAmountSelect" resultType="hashMap" parameterType="hashmap" >
 		<![CDATA[
 			SELECT ORDER_GOODS_NUM, ORDER_GOODS_AMOUNT

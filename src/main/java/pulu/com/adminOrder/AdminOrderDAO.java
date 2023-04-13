@@ -16,15 +16,12 @@ public class AdminOrderDAO extends AbstractDAO {
 	//관리자 주문처리 리스트
 	@SuppressWarnings("unchecked")
 	public List<Map<String, Object>> adminOrderList(Map<String, Object> map) throws Exception {
-//		return (List<Map<String,Object>>) selectList("adminOrder.orderList", map);
-		
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 		List<Integer> orderNumList = selectList("adminOrder.selectOrderNum", map);
 		log.info("\n01. 모든 주문번호 == " + orderNumList);
 
 		for (int ORDER_NUM : orderNumList) {
-			Map<String, Object> orderDeliMap = (Map<String, Object>) selectOne("adminOrder.selectOrderDeliByOrderNum",
-					ORDER_NUM);
+			Map<String, Object> orderDeliMap = (Map<String, Object>) selectOne("adminOrder.selectOrderDeliByOrderNum", ORDER_NUM);
 			log.info("\n02. 주문번호 " + ORDER_NUM + "의 주문정보 == " + orderDeliMap);
 			List<Map<String, Object>> orderGoodsList = (List<Map<String, Object>>) selectList(
 					"adminOrder.selectOrderGoodsByOrderNum", ORDER_NUM);
@@ -70,8 +67,7 @@ public class AdminOrderDAO extends AbstractDAO {
 		log.info("\n01. 모든 주문번호 == " + orderNumList);
 
 		for (Map<String, Object> ORDER_NUM : orderNumList) {
-			Map<String, Object> orderDeliMap = (Map<String, Object>) selectOne("adminOrder.selectOrderDeliByOrderNum",
-					ORDER_NUM);
+			Map<String, Object> orderDeliMap = (Map<String, Object>) selectOne("adminOrder.selectOrderDeliByOrderNum", ORDER_NUM);
 			log.info("\n02. 주문번호 " + ORDER_NUM + "의 주문정보 == " + orderDeliMap);
 			List<Map<String, Object>> orderGoodsList = (List<Map<String, Object>>) selectList(
 					"adminOrder.selectOrderGoodsByOrderNum", ORDER_NUM);
@@ -93,8 +89,7 @@ public class AdminOrderDAO extends AbstractDAO {
 		log.info("\n01. 모든 주문번호 == " + orderNumList);
 
 		for (Map<String, Object> ORDER_NUM : orderNumList) {
-			Map<String, Object> orderDeliMap = (Map<String, Object>) selectOne("adminOrder.selectOrderDeliByOrderNum",
-					ORDER_NUM);
+			Map<String, Object> orderDeliMap = (Map<String, Object>) selectOne("adminOrder.selectOrderDeliByOrderNum", ORDER_NUM);
 			log.info("\n02. 주문번호 " + ORDER_NUM + "의 주문정보 == " + orderDeliMap);
 			List<Map<String, Object>> orderGoodsList = (List<Map<String, Object>>) selectList(
 					"adminOrder.selectOrderGoodsByOrderNum", ORDER_NUM);

@@ -23,18 +23,15 @@ public interface AdminOrderService {
 	Map<String, Object> adminOrderDetail(Map<String, Object> map) throws Exception;
 	
 	List<Map<String, Object>> adminOrderDetail2(Map<String, Object> map) throws Exception;
-	
-//관리자 주문처리 디테일 
-//	List<Map<String, Object>> adminOrderDetail(Map<String, Object>map) throws Exception;
-	 
 
+	Map<String, Object> adminOrderGoodsCount(Map<String, Object> map) throws Exception;
+	
 	//관리자 주문처리 수정
 	void adminOrderUpdate(Map<String, Object> map, HttpServletRequest request) throws Exception;
 
 	//관리자 주문처리 삭제
 	void adminOrderDelete(Map<String, Object> map, HttpServletRequest request) throws Exception;
 
-	Map<String, Object> adminOrderGoodsCount(Map<String, Object> map) throws Exception;
 
 	
 

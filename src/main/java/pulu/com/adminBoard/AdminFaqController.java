@@ -137,11 +137,8 @@ public class AdminFaqController {
 		adminFaqService.adminFaqInsert(commandMap.getMap(), request); // service단의 adminFaqInsert 로직 호출
 		
 		// 줄바꿈 시 <br/> 넣기
-//		String content1 = commentModel.getContent().replaceAll("\r\n", "<br/>");
-//		boardModel.setContent(content);
 		String content = request.getParameter("FAQ_CONTENT").replaceAll("\r\n", "<br/>");
 		mv.addObject("FAQ_CONTENT", content);
-//		mv.addObject("FAQ_CONTENT", commandMap.get(content));
 	
 		return mv;
 	}
